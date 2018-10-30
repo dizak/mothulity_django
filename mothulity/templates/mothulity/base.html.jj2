@@ -12,25 +12,9 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
     <link rel="stylesheet" type="text/css" href={% static "mothulity/style.css" %}>
     <style media="screen">
-      header div {
-          display: inline-block;
-      }
-      #hamburger {
-        font-size: 1.2em;
-      }
-      #mothulityName {
-        font-size: 1.2em;
-      }
-      #headerLogo {
-        width: 60px;
-        float: right;
-      }
-      nav li {
-        margin-bottom: 10px;
-        display: block;
-      }
-      #mobileNavigation {
-        display: none;
+      #Logo {
+        width: 40px;
+        float: left;
       }
       .loader {
         border: 16px solid #f3f3f3; /* Light grey */
@@ -56,25 +40,6 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
-      @media screen and (min-width: 900px) {
-        #headerBar {
-          display: none;
-        }
-        section {
-          margin-left: 250px;
-        }
-        #desktopNavigation {
-          width: 100px;;
-        }
-        .introSlides img {
-          margin-left: 20%;
-        }
-      }
-      @media screen and (max-width: 900px) {
-        #desktopNavigation {
-          display: none;
-        }
-      }
     input[type=file]:invalid ~ button[type=submit] {
       display: none;
     }
@@ -84,35 +49,12 @@
     </style>
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <body>
-    <header id="headerBar" class="w3-container w3-xlarge w3-margin w3-card-8 w3-padding-16 w3-green">
-      <button id="hamburger" class="w3-button w3-xlarge" type="button" name="button" onclick="mobileNavigationOpen('mobileNavigation')">
-        ☰
-      </button>
-      <div id=mothulityName>
-        mothulity
-      </div>
-      <img id="headerLogo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
-    </header>
-    <nav id="desktopNavigation">
-      <ul class="w3-sidebar w3-bar-block">
-        <li class="w3-bar-item w3-button"><a href="{% url "mothulity:index" %}"><img style="width: 80%; margin: auto" src="{% static "mothulity/logo.png" %}" alt="mothulity">mothulity home</a></li>
-        {% for art in articles %}
-          <li class="w3-bar-item w3-button w3-green w3-hover-black"><a href="{% url "mothulity:wiki" art.title %}">{{ art.title }}</a></li>
-        {% endfor %}
-      </ul>
+  <body class="w3-container w3-light-grey">
+    <nav class="w3-container w3-margin w3-round-xlarge w3-white">
+      <a class="w3-bar-item w3-mobile w3-button w3-round w3-white w3-xlarge" href="#"><img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">mothulity home</a>
     </nav>
-    <nav id="mobileNavigation" class="w3-sidebar w3-top w3-bar-block">
-        <button onclick="mobileNavigationClose('mobileNavigation')" class="w3-bar-item w3-button w3-large">Close &times;</button>
-        <a class="w3-bar-item w3-button" href="{% url "mothulity:index" %}">mothulity home</a>
-        {% for art in articles %}
-          <li class="w3-bar-item w3-button w3-green w3-hover-black"><a href="{% url "mothulity:wiki" art.title %}">{{ art.title }}</a></li>
-        {% endfor %}
-    </nav>
-    <section class="w3-container w3-light-grey">
-      {% block content %}{% endblock %}
-      {% block footer %}Some copyright{% endblock %}
-    </section>
+    {% block content %}{% endblock %}
+    {% block footer %}Some copyright{% endblock %}
     <script>
       function mobileNavigationOpen(elID) {
           document.getElementById(elID).style.width = "100%";
