@@ -3,10 +3,10 @@
   Mothulity - Status
 {% endblock %}
 {% block content %}
-  <article class="w3-container w3-margin w3-card-8 w3-white">
+  <article class="w3-container w3-round-xlarge w3-margin w3-card-8 w3-white">
     <h1>Hello from status page!</h1>
   </article>
-  <article class="w3-container w3-margin w3-card-8 w3-white">
+  <article class="w3-container w3-round-xlarge w3-margin w3-card-8 w3-white">
     <h2>Your job is {{ jobstatus.job_status }}</h2>
     {% if jobstatus.job_status == "pending" %}
       <p>It means it is waiting for resources allocation on the computing cluster.</p>

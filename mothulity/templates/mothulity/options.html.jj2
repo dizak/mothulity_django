@@ -3,7 +3,7 @@
   Mothulity Index
 {% endblock %}
 {% block content %}
-  <article class="w3-margin w3-card-8 w3-white">
+  <article class="w3-round-xlarge w3-margin w3-card-8 w3-white">
     <form class="w3-container" action="{% url "mothulity:submit" job %}" method="post">
       <h2>Parameters to run mothulity:</h2>
       {% csrf_token %}
@@ -20,7 +20,7 @@
             </div>
           </div>
         {% endfor %}
-      <p><button class="w3-button w3-black" type="submit">Submit</button></p>
+      <p><button class="w3-round w3-button w3-black" type="submit">Submit</button></p>
     </form>
   </article>
 {% endblock %}

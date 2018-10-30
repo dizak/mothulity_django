@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 {% if upload_error %}
-  <article class="w3-container w3-margin w3-card-8 w3-red">
+  <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-red">
     <h2>Upload error...</h2>
     <section>
       <p>{{ upload_error }}</p>
@@ -14,55 +14,10 @@
   </article>
 {% else %}
 {% endif %}
-  <article class="w3-container w3-margin w3-card-8 w3-white">
-    <h1>mothulity - simple tool for facilitating work with mothur</h1>
-    <p>Mothur is a great tool - no doubt about that...</p>
-    <p>...but isn't it quite easy to make a tiny error and loose your time on re-running the analysis?..</p>
-    <p>Use mothulity:</p>
-    <ol>
-      <li>Upload your files.</li>
-      <li>Fill just a single short form.</li>
-      <li>Interprete the results with publication-ready figures.</li>
-      <li>Publish.</li>
-    </ol>
+  <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
+    <h1>mothulity - easy-to-use tool for facilitating work with mothur</h1>
   </article>
-  <article class="w3-container w3-margin w3-card-8 w3-white">
-    <div class="w3-content w3-display-container">
-      <div class="introSlides w3-display-container">
-        <img src="{% static "mothulity/krona.png" %}" alt="krona pie chart">
-        <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
-          Explore taxonomy with interactive Krona charts
-        </div>
-      </div>
-      <div class="introSlides w3-display-container">
-        <img src="{% static "mothulity/raref.png" %}" alt="rarefaction curves">
-        <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
-          Validate sequencing efforts with zoomable rarefaction curves
-        </div>
-      </div>
-      <div class="introSlides w3-display-container">
-        <img src="{% static "mothulity/tree.png" %}" alt="dendrogram">
-        <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
-          Find out cross-sample relations with scalable dendrograms.
-        </div>
-      </div>
-      <div class="introSlides w3-display-container">
-        <img src="{% static "mothulity/dist.png" %}" alt="heatmap">
-        <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
-          Find out cross-sample relations with scalable heatmap.
-        </div>
-      </div>
-      <div class="introSlides w3-display-container">
-        <img src="{% static "mothulity/nmds.png" %}" alt="NMDS">
-        <div class="w3-display-topright w3-large w3-container w3-padding-16 w3-black">
-          Find out cross-sample relations with interactive NMDS visualization.
-        </div>
-      </div>
-      <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-      <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
-    </div>
-  </article>
-  <article class="w3-container w3-margin w3-card-8 w3-white">
+  <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
     <h2>Files upload</h2>
     <section>
       <form method="post" enctype="multipart/form-data">
@@ -78,9 +33,55 @@
           </div>
         {% endfor %}
         <br>
-        <button class="w3-button w3-black" type="submit" onclick=showDiv('UploadSpinner')>Submit</button>
+        <button class="w3-button w3-round w3-black" type="submit" onclick=showDiv('UploadSpinner')>Submit</button>
       </form>
       <div class="loader" id="UploadSpinner" style="display:none"></div>
     </section>
   </article>
+  <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
+    <p>Mothur is a great tool - no doubt about that...</p>
+    <p>...but isn't it quite easy to make a tiny error and loose your time on re-running the analysis?..</p>
+    <p>Use mothulity:</p>
+    <ol>
+      <li>Upload your files.</li>
+      <li>Fill just a single short form.</li>
+      <li>Interprete the results with publication-ready figures.</li>
+      <li>Publish.</li>
+    </ol>
+    <div class="w3-content w3-display-container">
+      <div class="introSlides w3-display-container">
+        <img src="{% static "mothulity/krona.png" %}" alt="krona pie chart">
+        <div class="w3-display-topright w3-large w3-container w3-round w3-padding-16 w3-black">
+          Explore taxonomy with interactive Krona charts
+        </div>
+      </div>
+      <div class="introSlides w3-display-container">
+        <img src="{% static "mothulity/raref.png" %}" alt="rarefaction curves">
+        <div class="w3-display-topright w3-large w3-container w3-round w3-padding-16 w3-black">
+          Validate sequencing efforts with zoomable rarefaction curves
+        </div>
+      </div>
+      <div class="introSlides w3-display-container">
+        <img src="{% static "mothulity/tree.png" %}" alt="dendrogram">
+        <div class="w3-display-topright w3-large w3-container w3-round w3-padding-16 w3-black">
+          Find out cross-sample relations with scalable dendrograms.
+        </div>
+      </div>
+      <div class="introSlides w3-display-container">
+        <img src="{% static "mothulity/dist.png" %}" alt="heatmap">
+        <div class="w3-display-topright w3-large w3-container w3-round w3-padding-16 w3-black">
+          Find out cross-sample relations with scalable heatmap.
+        </div>
+      </div>
+      <div class="introSlides w3-display-container">
+        <img src="{% static "mothulity/nmds.png" %}" alt="NMDS">
+        <div class="w3-display-topright w3-large w3-container w3-round w3-padding-16 w3-black">
+          Find out cross-sample relations with interactive NMDS visualization.
+        </div>
+      </div>
+      <button class="w3-button w3-round w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+      <button class="w3-button w3-round w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+  </article>
+
 {% endblock %}

@@ -6,7 +6,7 @@
 {% block content %}
   {% for art in articles %}
     {% if art.title == title %}
-    <article class="w3-container w3-margin w3-card-8 w3-white">
+    <article class="w3-container w3-round-xlarge w3-margin w3-card-8 w3-white">
       <h1>{{ art.title|safe }}</h1>
       {{ art.content|safe }}
     </article>

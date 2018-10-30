@@ -109,7 +109,7 @@
           <li class="w3-bar-item w3-button w3-green w3-hover-black"><a href="{% url "mothulity:wiki" art.title %}">{{ art.title }}</a></li>
         {% endfor %}
     </nav>
-    <section class="w3-container w3-grey">
+    <section class="w3-container w3-light-grey">
       {% block content %}{% endblock %}
       {% block footer %}Some copyright{% endblock %}
     </section>
