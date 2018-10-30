@@ -281,7 +281,7 @@ class ViewsResponseTests(TestCase):
         self.ref_paired_fastq_file_name = '{}/tests/Mock_S280_L001_R2_001.fastq'.format(base_dir)
         self.ref_not_fastq_R1_file_name = '{}/tests/not_a_fastq_file_R1.fastq'.format(base_dir)
         self.ref_not_fastq_R2_file_name = '{}/tests/not_a_fastq_file_R2.fastq'.format(base_dir)
-        self.ref_index_h1 = 'mothulity - simple tool for facilitating work with mothur'
+        self.ref_index_h1 = 'mothulity - run mothur with a single <del>command</del> button!'
         self.ref_submit_no_data_h2 = 'Parameters to run mothulity'
         self.ref_submit_data_submitted_h1 = 'Thank you, your data has been submitted!'
         self.ref_status_h2 = 'Your job is {}'.format(self.test_job_status)
@@ -339,7 +339,6 @@ class ViewsResponseTests(TestCase):
                 )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.ref_submit_no_data_h2)
-        print(response.content)
 
     @unittest.skipUnless(socket.gethostname() == hostname_development, 'Paths supposed to work on the development machine.')
     def test_good_files_upload_remote_dir_mounted(self):
@@ -357,7 +356,6 @@ class ViewsResponseTests(TestCase):
                 )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.ref_submit_no_data_h2)
-        print(response.content)
 
 
     def test_submit_no_data(self):
