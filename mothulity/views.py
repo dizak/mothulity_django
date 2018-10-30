@@ -130,6 +130,7 @@ def submit(request,
             return render(request,
                           "mothulity/submit.html.jj2",
                           {"articles": Article.objects.all(),
+                           "submissiondata": job.submissiondata,
                            "notify_email": request.POST["notify_email"],
                            "job_id": job.job_id})
         else:
