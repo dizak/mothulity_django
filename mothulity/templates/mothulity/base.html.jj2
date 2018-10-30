@@ -28,9 +28,6 @@
       .formField {
         display: inline-block;
       }
-      #error {
-        color: red;
-      }
       .introSlides img {
         margin: auto;
         width: 100%;
