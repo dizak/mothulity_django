@@ -12,9 +12,17 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
     <link rel="stylesheet" type="text/css" href={% static "mothulity/style.css" %}>
     <style media="screen">
+      #welcomeSlogan {
+        font-size: 120px;
+      }
       #Logo {
-        width: 50px;
-        float: right;
+        width: 300px;
+        height: 300px;
+        margin-top: 10px;
+      }
+      .flexContainer {
+        display: flex;
+        justify-content: space-around;
       }
       .loader {
         border: 16px solid #f3f3f3; /* Light grey */
@@ -43,20 +51,43 @@
     input[type=file]:valid ~ button[type=submit] {
       display: block;
     }
-    @media screen and (max-width: 600px) {
-      #Logo {
+    @media screen and (max-width: 860px) {
+      #desktopWelcome {
         display: none;
+      }
+    }
+    @media screen and (min-width: 860px) {
+      #mobileWelcome {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 565px) {
+      #mobileWelcome h1 {
+        font-size: 64px;
       }
     }
     </style>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body class="w3-container w3-light-grey">
-    <nav class="w3-container w3-margin w3-round-xlarge w3-white">
+    <article id="desktopWelcome" class="flexContainer w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
       <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
-      <a class="w3-bar-item w3-mobile w3-button w3-round w3-white w3-xlarge" href="{% url "mothulity:index" %}">home</a>
+      <div>
+        <h1 id="welcomeSlogan">mothulity</h1>
+        <p class="w3-xxlarge">run mothur with a single button!</p>
+      </div>
+    </article>
+    <article id="mobileWelcome" class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
+      <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
+      <div>
+        <h1 id="welcomeSlogan">mothulity</h1>
+        <p class="w3-xxlarge">run mothur with a single button!</p>
+      </div>
+    </article>
+    <nav class="w3-container w3-margin w3-round-xlarge w3-grey">
+      <a class="w3-bar-item w3-mobile w3-button w3-round w3-xlarge" href="{% url "mothulity:index" %}">home</a>
       <div class="w3-dropdown-hover w3-mobile">
-        <button class="w3-button w3-round w3-white w3-xlarge" type="button" name="button">wiki</button>
+        <button class="w3-button w3-round w3-xlarge" type="button" name="button">wiki</button>
         <div class="w3-dropdown-content w3-bar-block">
           {% for art in articles %}
           <a class="w3-bar-item w3-mobile w3-button w3-round w3-white w3-xlarge" href="{% url "mothulity:wiki" art.title %}">{{ art.title }}</a>
