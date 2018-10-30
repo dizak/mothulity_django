@@ -13,8 +13,8 @@
     <link rel="stylesheet" type="text/css" href={% static "mothulity/style.css" %}>
     <style media="screen">
       #Logo {
-        width: 40px;
-        float: left;
+        width: 50px;
+        float: right;
       }
       .loader {
         border: 16px solid #f3f3f3; /* Light grey */
@@ -46,12 +46,26 @@
     input[type=file]:valid ~ button[type=submit] {
       display: block;
     }
+    @media screen and (max-width: 600px) {
+      #Logo {
+        display: none;
+      }
+    }
     </style>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body class="w3-container w3-light-grey">
     <nav class="w3-container w3-margin w3-round-xlarge w3-white">
-      <a class="w3-bar-item w3-mobile w3-button w3-round w3-white w3-xlarge" href="#"><img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">mothulity home</a>
+      <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
+      <a class="w3-bar-item w3-mobile w3-button w3-round w3-white w3-xlarge" href="{% url "mothulity:index" %}">home</a>
+      <div class="w3-dropdown-hover w3-mobile">
+        <button class="w3-button w3-round w3-white w3-xlarge" type="button" name="button">wiki</button>
+        <div class="w3-dropdown-content w3-bar-block">
+          {% for art in articles %}
+          <a class="w3-bar-item w3-mobile w3-button w3-round w3-white w3-xlarge" href="{% url "mothulity:wiki" art.title %}">{{ art.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
     </nav>
     {% block content %}{% endblock %}
     {% block footer %}Some copyright{% endblock %}
