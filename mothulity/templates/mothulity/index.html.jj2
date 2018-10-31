@@ -5,19 +5,6 @@
 {% endblock %}
 {% block content %}
   <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
-    <h1 class="w3-xxxlarge">mothulity - run mothur with a single <del>command</del> button!</h1>
-  </article>
-  {% if upload_error %}
-    <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-red">
-      <h2>Upload error...</h2>
-      <section>
-        <p>{{ upload_error }}</p>
-        <p>Don't be shy, retry.</p>
-      </section>
-    </article>
-  {% else %}
-  {% endif %}
-  <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
     <h2>Files upload</h2>
     <p class="w3-small">Select all at once, holding the shift button</p>
     <section>
@@ -39,6 +26,16 @@
       <div class="loader" id="UploadSpinner" style="display:none"></div>
     </section>
   </article>
+  {% if upload_error %}
+    <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-red">
+      <h2>Upload error...</h2>
+      <section>
+        <p>{{ upload_error }}</p>
+        <p>Don't be shy, retry.</p>
+      </section>
+    </article>
+  {% else %}
+  {% endif %}
   <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
     <p>Mothur is a great tool - no doubt about that...</p>
     <p>...but isn't it quite easy to make a tiny error and loose your time on re-running the analysis?..</p>
