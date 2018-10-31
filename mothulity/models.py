@@ -83,7 +83,7 @@ class PathSettings(models.Model):
     """
     site = models.OneToOneField(Site, on_delete=models.CASCADE)
     upload_path = models.CharField(
-        default='/mnt/mothulity_HPC/',
+        default='/mnt/mothulity_HPC/jobs/',
         max_length=300,
         help_text='Input files upload path. It must point to the location ON THE WEBSERVER which also MOUNTED FROM HPC. MUST CONTAIN TRAILING SLASH.',
         )
