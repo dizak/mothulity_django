@@ -22,7 +22,7 @@
       }
       .flexContainer {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
       }
       .loader {
         border: 16px solid #f3f3f3; /* Light grey */
