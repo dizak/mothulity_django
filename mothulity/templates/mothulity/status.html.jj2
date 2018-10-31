@@ -20,7 +20,7 @@
         <li>problems with the sequences themselves</li>
       </ul>
       <p>It will NOT be resubmitted automatically again.</p>
-    {% elif jobstatus.job_status == "done" %}
+    {% elif jobstatus.job_status == "closed" %}
       <article class="w3-container w3-margin w3-card-8 w3-white">
         <p>Your results has been sent to {{ submissiondata.notify_email }}</p>
       </article>
