@@ -283,8 +283,8 @@ class ViewsResponseTests(TestCase):
         self.ref_not_fastq_R2_file_name = '{}/tests/not_a_fastq_file_R2.fastq'.format(base_dir)
         self.ref_index_h1 = 'mothulity - run mothur with a single <del>command</del> button!'
         self.ref_submit_no_data_h2 = 'Parameters to run mothulity'
-        self.ref_submit_data_submitted_h1 = 'Thank you, your data has been submitted!'
-        self.ref_status_h2 = 'Your job is {}'.format(self.test_job_status)
+        self.ref_submit_data_submitted_h1 = '{} has been submitted'.format(submissiondata.job_name.replace('-', '_'))
+        self.ref_status_h2 = '{} is {}'.format(submissiondata.job_name, self.test_job_status)
         self.ref_status_p = 'It means it is waiting for resources allocation on the computing cluster.'
 
     def test_index_response_code(self):
