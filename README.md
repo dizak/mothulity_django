@@ -26,7 +26,7 @@ These instructions are compliant to [this tutorial at DigitalOcean](https://www.
 
 1. ```python manage.py createsuperuser``` - create the Admin user and the Admin Panel.
 
-1. ```python manage.py makemigrations && python manage.py migrate``` - setup the database.
+1. ```python manage.py makemigrations mothulity && python manage.py migrate mothulity``` - setup the database.
 
 1. In the Admin Panel:
 
