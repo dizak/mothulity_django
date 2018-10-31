@@ -51,18 +51,14 @@
     input[type=file]:valid ~ button[type=submit] {
       display: block;
     }
-    @media screen and (max-width: 860px) {
-      #desktopWelcome {
-        display: none;
-      }
-    }
     @media screen and (min-width: 860px) {
-      #mobileWelcome {
-        display: none;
+      header {
+        display: flex;
+        justify-content: space-between;
       }
     }
     @media screen and (max-width: 565px) {
-      #mobileWelcome h1 {
+      #welcomeSlogan {
         font-size: 64px;
       }
     }
@@ -70,20 +66,13 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body class="w3-container w3-light-grey">
-    <article id="desktopWelcome" class="flexContainer w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
+    <header class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
       <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
       <div>
         <h1 id="welcomeSlogan">mothulity</h1>
         <p class="w3-xxlarge">run mothur with a single button!</p>
       </div>
-    </article>
-    <article id="mobileWelcome" class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
-      <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
-      <div>
-        <h1 id="welcomeSlogan">mothulity</h1>
-        <p class="w3-xxlarge">run mothur with a single button!</p>
-      </div>
-    </article>
+    </header>
     <nav class="w3-container w3-margin w3-round-xlarge w3-grey">
       <a class="w3-bar-item w3-mobile w3-button w3-round w3-xlarge" href="{% url "mothulity:index" %}">home</a>
       <div class="w3-dropdown-hover w3-mobile">
