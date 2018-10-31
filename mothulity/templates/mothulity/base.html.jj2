@@ -12,17 +12,27 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
     <link rel="stylesheet" type="text/css" href={% static "mothulity/style.css" %}>
     <style media="screen">
-      #welcomeSlogan {
+      #mothulityName {
         font-size: 120px;
+      }
+      #mothulitySlogan {
+        font-size: 30px;
       }
       #Logo {
         width: 300px;
         height: 300px;
-        margin-top: 10px;
+        margin: 20px;
       }
-      .flexContainer {
+      #headerText {
+        margin: 20px;
+        flex-grow: 10;
+        text-align: center;
+      }
+      .flexSpread {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
       }
       .loader {
         border: 16px solid #f3f3f3; /* Light grey */
@@ -51,26 +61,27 @@
     input[type=file]:valid ~ button[type=submit] {
       display: block;
     }
-    @media screen and (min-width: 860px) {
-      header {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
     @media screen and (max-width: 565px) {
-      #welcomeSlogan {
+      #Logo {
+        width: 200px;
+        height: 200px;
+      }
+      #mothulityName {
         font-size: 64px;
+      }
+      #mothulitySlogan {
+        font-size: 15px;
       }
     }
     </style>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body class="w3-container w3-light-grey">
-    <header class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
+    <header class="flexSpread w3-margin w3-round-xlarge w3-card-8 w3-white">
       <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
-      <div>
-        <h1 id="welcomeSlogan">mothulity</h1>
-        <p class="w3-xxlarge">run mothur with a single button!</p>
+      <div id="headerText">
+        <h1 id="mothulityName">mothulity</h1>
+        <p id="mothulitySlogan">run mothur with a single button!</p>
       </div>
     </header>
     <nav class="w3-container w3-margin w3-round-xlarge w3-grey">
