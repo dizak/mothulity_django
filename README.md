@@ -47,11 +47,12 @@ Updates of the ```django-mothulity``` app should require nothing more than ```pi
   [Service]
   User=<username>
   Group=www-data
-  ExecStart=sched.py
+  ExecStart=/<path-to-virtualenv>/sched.py /<name_of_project>/
 
   [Install]
   WantedBy=multi-user.target
   ```
+  The ```ExecStart``` should point to the ```sched.py``` executable, mind if it is in the virtual environment. It needs the path to the project as an argument - this is hiw it gets the project's settings.
 
   - ```sudo systemctl start django-mothulity-scheduler``` - start the service.
 
