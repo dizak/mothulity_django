@@ -22,6 +22,10 @@ These instructions are compliant to [this tutorial at DigitalOcean](https://www.
 
 1. It is assumed that ```'localhost'``` and ```'<your.domain.com>'``` are in the ```<name_of_project>/settings.py ALLOWED_HOSTS``` already. If not - add it.
 
+1. Add ```from django.conf.urls import include, url``` to ```<name_of_project>/<name_of_project>/urls.py```.
+
+1. Add ```url(r"^mothulity/", include("mothulity.urls"))``` to ```<name_of_project>/<name_of_project>/urls.py```.
+
 1. ```python manage.py makemigrations mothulity && python manage.py migrate mothulity``` - setup the database.
 
 1. ```python manage.py createsuperuser``` - create the Admin user and the Admin Panel.
