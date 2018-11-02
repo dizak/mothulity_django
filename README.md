@@ -8,7 +8,7 @@ The main principle is to:
 1. Present HTML front-end to the user which gathers submission data.
 2. Run a separate sched.py script which takes care of reading what was gathered in the database, submits it to [SLURM](https://slurm.schedmd.com/) and watches the submitted process.
 
-django-mothulity stores its settings in the database - there is no need for any modification in the code (including the paths, scheduler and HPC settings) once it is deployed. The settings are bound to the domain name other than ```localhost``` and specified in ```<name_of_project>/settings.py ALLOWED_HOSTS```. Once this is specified, these settings must specified in the Admin Panel. This solution does NOT allow for using more than domain name - the settings will always bound to first object from the ```ALLOWED_HOSTS``` other than ```localhost```.
+django-mothulity stores its settings in the database - there is no need for any modification in the code (including the paths, scheduler and HPC settings) once it is deployed. The settings are bound to the domain name other than ```localhost``` and specified in ```<name_of_project>/settings.py ALLOWED_HOSTS```. Once this is specified, these settings must specified in the Admin Panel. This solution does NOT allow for using more than one domain name - the settings will always bound to first object from the ```ALLOWED_HOSTS``` other than ```localhost```.
 
 ### Installation for Production - NGINX and Gunicorn (virtual environment is advised, as always)
 
