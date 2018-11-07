@@ -45,7 +45,7 @@ def index(request,
             upld_dir = "{}{}/".format(path_settings.upload_path,
                                       str(job_id).replace("-", "_"))
             hpc_dir = "{}{}/".format(
-                path_settings.hpc_prefix_path,
+                path_settings.hpc_path,
                 str(job_id).replace("-", "_"),
             )
             sp.check_output("mkdir {}".format(upld_dir), shell=True).decode('utf-8')

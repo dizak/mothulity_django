@@ -87,7 +87,7 @@ class PathSettings(models.Model):
         max_length=300,
         help_text='Input files upload path. It must point to the location ON THE WEBSERVER which also MOUNTED FROM HPC. MUST CONTAIN TRAILING SLASH.',
         )
-    hpc_prefix_path = models.CharField(
+    hpc_path = models.CharField(
         default='/home/mothulity/jobs/',
         max_length=300,
         help_text='Must point to the same location as the above upload_path but from the HPC ITSELF. MUST CONTAIN TRAILING SLASH.'

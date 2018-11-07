@@ -238,7 +238,7 @@ class ViewsResponseTests(TestCase):
         path_settings = models.PathSettings(
             site=site,
             upload_path='/tmp/',
-            hpc_prefix_path='/tmp/',
+            hpc_path='/tmp/',
         )
         path_settings.save()
         hpc_settings = models.HPCSettings(
@@ -329,7 +329,7 @@ class ViewsResponseTests(TestCase):
         site = models.Site.objects.get(domain=self.settings_domain)
         path_settings = site.pathsettings
         path_settings.upload_path='/mnt/mothulity_HPC/jobs/'
-        path_settings.hpc_prefix_path='/home/mothulity/jobs/'
+        path_settings.hpc_path='/home/mothulity/jobs/'
         path_settings.save()
         with open(self.ref_single_file_name) as fin_1:
             with open(self.ref_paired_fastq_file_name) as fin_2:
@@ -346,7 +346,7 @@ class ViewsResponseTests(TestCase):
         site = models.Site.objects.get(domain=self.settings_domain)
         path_settings = site.pathsettings
         path_settings.upload_path='/mnt/headnode/data/django/'
-        path_settings.hpc_prefix_path='/home/dizak/data/django/'
+        path_settings.hpc_path='/home/dizak/data/django/'
         path_settings.save()
         with open(self.ref_single_file_name) as fin_1:
             with open(self.ref_paired_fastq_file_name) as fin_2:
