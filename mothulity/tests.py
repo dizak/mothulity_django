@@ -243,6 +243,7 @@ class ViewsResponseTests(TestCase):
         path_settings.save()
         hpc_settings = models.HPCSettings(
             site=site,
+            hpc_name='headnode',
             free_Ns_minimum_number=20,
             free_PHIs_minimum_number=5,
             retry_maximum_number=1,
