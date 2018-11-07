@@ -362,7 +362,7 @@ def get_retry(job_id):
 
 def queue_submit(job_id,
                  machine,
-                 hpc_prefix,
+                 hpc_path,
                  sbatch_success="Submitted batch job"):
     """
     Retrieves required data from models by Job ID, renders mothulity command,
@@ -382,7 +382,7 @@ def queue_submit(job_id,
     job = models.JobID.objects.get(job_id=job_id)
     seqs_count = job.seqsstats.seqs_count
     sub_data = model_to_dict(job.submissiondata)
-    job_id_dir = '{}{}/'.format(hpc_prefix, str(job_id).replace('-', '_'))
+    job_id_dir = '{}{}/'.format(hpc_path, str(job_id).replace('-', '_'))
     # if seqs_count > 500000:
     #     sub_data["resources"] = "phi"
     # else:
