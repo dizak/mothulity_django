@@ -41,7 +41,7 @@ def job():
         idle_phis = utils.parse_sinfo(utils.ssh_cmd(cmd="sinfo", machine=hpc_settings.hpc_name), "accel", "idle")
         if utils.get_seqs_count(i) > 500000:
             if idle_phis > hpc_settings.free_PHIs_minimum_number:
-                if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, headnode_prefix=path_settings.hpc_prefix_path) is True:
+                if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, hpc_prefix=path_settings.hpc_prefix_path) is True:
                     utils.change_status(i)
                     print("JobID {} submitted".format(i))
             else:
@@ -49,7 +49,7 @@ def job():
                                                                              hpc_settings.free_PHIs_minimum_number))
         if utils.get_seqs_count(i) < 500000:
             if idle_ns > hpc_settings.free_Ns_minimum_number:
-                if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, headnode_prefix=path_settings.hpc_prefix_path) is True:
+                if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, hpc_prefix=path_settings.hpc_prefix_path) is True:
                     utils.change_status(i)
                     print("JobID {} submitted".format(i))
             else:
