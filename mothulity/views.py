@@ -36,6 +36,7 @@ def index(request,
     """
     site = Site.objects.get(domain=[i for i in settings.ALLOWED_HOSTS if i != 'localhost'][0])
     path_settings = site.pathsettings
+    hpc_settings = site.hpcsettings
     if request.method == "POST":
         form = FileFieldForm(request.POST,
                              request.FILES)
@@ -74,7 +75,7 @@ def index(request,
                                    "form": form,
                                    "upload_error": upload_errors['format']})
             try:
-                utils.ssh_cmd('mothulity_fc {}'.format(headnode_dir))
+                utils.ssh_cmd(cmd='mothulity_fc {}'.format(headnode_dir), machine=hpc_settings.hpc_name)
             except:
                 form = FileFieldForm()
                 return render(request,
