@@ -44,7 +44,7 @@ def index(request,
             job_id = uuid.uuid4()
             upld_dir = "{}{}/".format(path_settings.upload_path,
                                       str(job_id).replace("-", "_"))
-            headnode_dir = "{}{}/".format(
+            hpc_dir = "{}{}/".format(
                 path_settings.hpc_prefix_path,
                 str(job_id).replace("-", "_"),
             )
@@ -75,7 +75,7 @@ def index(request,
                                    "form": form,
                                    "upload_error": upload_errors['format']})
             try:
-                utils.ssh_cmd(cmd='mothulity_fc {}'.format(headnode_dir), machine=hpc_settings.hpc_name)
+                utils.ssh_cmd(cmd='mothulity_fc {}'.format(hpc_dir), machine=hpc_settings.hpc_name)
             except:
                 form = FileFieldForm()
                 return render(request,
