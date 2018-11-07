@@ -99,6 +99,11 @@ class HPCSettings(models.Model):
     Model for HPC setting, eg. the minimum number of free nodes.
     """
     site = models.OneToOneField(Site, on_delete=models.CASCADE)
+    hpc_name = models.CharField(
+        max_length=30,
+        default='headnode',
+        help_text='Name of the HPC used by the ssh.'
+        )
     free_Ns_minimum_number = models.IntegerField(
         default=20,
         help_text='Minimum number of free N nodes in order to submit the job.',
