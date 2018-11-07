@@ -361,6 +361,7 @@ def get_retry(job_id):
 
 
 def queue_submit(job_id,
+                 machine,
                  headnode_prefix,
                  sbatch_success="Submitted batch job"):
     """
@@ -392,7 +393,10 @@ def queue_submit(job_id,
                                      moth_opts=sub_data,
                                      pop_elems=["job_id",
                                                 "amplicon_type"])
-    sbatch_out = ssh_cmd(moth_cmd)
+    sbatch_out = ssh_cmd(
+        cmd=moth_cmd,
+        machine=machine,
+        )
     if sbatch_success in sbatch_out:
         add_slurm_id(job_id=job_id,
                      slurm_id=int(sbatch_out.split(" ")[-1]))
@@ -489,7 +493,8 @@ def add_retry(job_id,
 
 
 def isrunning(job_id,
-              status_model=models.JobStatus):
+              machine,
+              status_model=models.JobStatus,):
     """
     Check if job is actually running on the computing cluster.
 
@@ -506,7 +511,7 @@ def isrunning(job_id,
         True is submitted ID has <R> state in squeue output.
     """
     slurm_id = get_slurm_id(job_id)
-    if parse_squeue(ssh_cmd("squeue"), slurm_id, "ST") == "R":
+    if parse_squeue(ssh_cmd(cmd="squeue", machine=machine), slurm_id, "ST") == "R":
         return True
     else:
         return False
