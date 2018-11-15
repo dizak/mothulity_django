@@ -12,16 +12,16 @@ class FileFieldForm(forms.Form):
                                                                         "class": input_class,
                                                                         "autocomplete": "off"}))
 
-    def clean_file_field(self):
-        max_size = 104857600
-        cleaned_data = self.cleaned_data["file_field"]
-        if cleaned_data.size > max_size:
-            size_hr = utils.convert_size(cleaned_data._size)
-            max_size_hr = utils.convert_size(max_size)
-            msg = "File too big ({}). Maximumum size allowed: {}".format(size_hr,
-                                                                         max_size_hr)
-            self.add_error("file_field", msg)
-        return cleaned_data
+    # def clean_file_field(self):
+    #     max_size = 104857600
+    #     cleaned_data = self.cleaned_data["file_field"]
+    #     if cleaned_data.size > max_size:
+    #         size_hr = utils.convert_size(cleaned_data._size)
+    #         max_size_hr = utils.convert_size(max_size)
+    #         msg = "File too big ({}). Maximumum size allowed: {}".format(size_hr,
+    #                                                                      max_size_hr)
+    #         self.add_error("file_field", msg)
+    #     return cleaned_data
 
 
 class OptionsForm(forms.Form):
