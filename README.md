@@ -32,11 +32,13 @@ These instructions are compliant to [this tutorial at DigitalOcean](https://www.
 
 1. Add ```from django.conf.urls import include, url``` to ```<name_of_project>/<name_of_project>/urls.py```.
 
-1. Add ```url(r"^mothulity/", include("mothulity.urls"))``` to ```<name_of_project>/<name_of_project>/urls.py```.
+1. Add ```url(r"^mothulity/", include("mothulity.urls")),``` to ```<name_of_project>/<name_of_project>/urls.py```.
 
 1. ```python manage.py makemigrations mothulity && python manage.py migrate mothulity``` - setup the database.
 
 1. ```python manage.py test mothulity```. - check if everything is all right.
+
+1. ```python manage.py collectstatic``` - put static files in the directory indicated in ```<name_of_project>/<name_of_project>/settings.py```.
 
 1. In the Admin Panel:
 
@@ -57,7 +59,7 @@ Updates of the ```django-mothulity``` app should require nothing more than ```pi
   [Service]
   User=<username>
   Group=www-data
-  ExecStart=/<path-to-virtualenv>/sched.py /<name_of_project>/
+  ExecStart=/<path-to-virtualenv>/sched.py /<path-to>/<name_of_project>/
 
   [Install]
   WantedBy=multi-user.target
@@ -70,9 +72,44 @@ Updates of the ```django-mothulity``` app should require nothing more than ```pi
 
   - ```sudo systemctl enable django-mothulity-scheduler``` - start the service on boot.
 
+1. Set the maximum size of the files upload and timeouts:
+
+  - In the /etc/nginx/site-available/<name_of_project>, section ```location /``` put ```client_max_body_size``` parameter, like that:
+
+        ```bash
+        location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+        client_max_body_size 2000M;
+        }
+        ```
+
+  - In the ```/etc/nginx/nginx.conf``` file, in the ```http``` section, put proxy parameters, like that:
+
+  ```bash
+  proxy_connect_timeout 600;
+  proxy_send_timeout 600;
+  proxy_read_timeout 600;
+
+  ```
+
+  - In the ```/etc/systemd/system/gunicorn.service``` file set the timeout parameter, like that:
+
+    ```bash
+    ExecStart=/home/dizak/mothulityenv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --timeout 600 \
+          --bind unix:/run/gunicorn.sock \
+          mothulity_ibb_waw_pl.wsgi:application
+    ```
+
 **Important**
 
-The scheduler service has to be restarted for the changes to HPC Settings Interval to take place.
+ - The scheduler service has to be restarted for the changes to HPC Settings Interval to take place.
+
+ - If there any app updates, migrations or any other changes, the ```gunicorn``` service must be restarted.
+
 
 ## Installation for Development
 
