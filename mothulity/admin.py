@@ -31,6 +31,10 @@ class PathSettingsAdmin(admin.ModelAdmin):
     list_display = ('site',)
 
 
+class WebServerSettingsAdmin(admin.ModelAdmin):
+    list_display = ('site',)
+
+
 class HPCSettingsAdmin(admin.ModelAdmin):
     list_display = ('site',)
 
