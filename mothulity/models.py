@@ -94,6 +94,17 @@ class PathSettings(models.Model):
     )
 
 
+class WebServerSettings(models.Model):
+    """
+    Model for the Web-Server settings, eg session expiry time.
+    """
+    site = models.OneToOneField(Site, on_delete=models.CASCADE)
+    files_upload_expiry_time = models.IntegerField(
+        default=1200,
+        help_text='Session expiry time in seconds used for the files-upload view.',
+    )
+
+
 class HPCSettings(models.Model):
     """
     Model for HPC setting, eg. the minimum number of free nodes.
