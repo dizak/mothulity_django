@@ -241,6 +241,11 @@ class ViewsResponseTests(TestCase):
             hpc_path='/tmp/',
         )
         path_settings.save()
+        web_server_settings = models.WebServerSettings(
+            site=site,
+            files_upload_expiry_time=1200,
+        )
+        web_server_settings.save()
         hpc_settings = models.HPCSettings(
             site=site,
             hpc_name='headnode',
