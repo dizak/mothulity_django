@@ -169,3 +169,33 @@ def wiki(request,
                   "mothulity/wiki.html.jj2",
                   {"title": title,
                    "articles": Article.objects.all()})
+
+def handler404(request):
+    """
+    Displays custom 404 error page.
+    """
+    return render(
+        request,
+        'mothulity/404.html.jj2',
+        status=404,
+        )
+
+def handler413(request):
+    """
+    Displays custom 413 error page.
+    """
+    return render(
+        request,
+        'mothulity/413.html.jj2',
+        status=413,
+        )
+
+def handler500(request):
+    """
+    Displays custom 500 error page.
+    """
+    return render(
+        request,
+        'mothulity/500.html.jj2',
+        status=500,
+        )
