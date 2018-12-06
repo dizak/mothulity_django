@@ -35,15 +35,6 @@
     </nav>
     {% block content %}{% endblock %}
     {% block footer %}Some copyright{% endblock %}
-    <script>
-      function mobileNavigationOpen(elID) {
-          document.getElementById(elID).style.width = "100%";
-          document.getElementById(elID).style.display = "block";
-      }
-      function mobileNavigationClose(elID) {
-          document.getElementById(elID).style.display = "none";
-      }
-      </script>
     <script type="text/javascript">
       function showDiv(elId) {
         document.getElementById(elId).style.display = 'block';
