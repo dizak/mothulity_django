@@ -9,7 +9,7 @@
   height: 300px;
   margin: 20px;
 }
-#headerText {
+.flexRightCenterText {
   margin: 20px;
   flex-grow: 10;
   text-align: center;
