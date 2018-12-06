@@ -10,76 +10,14 @@
     <!-- Browser Bar Coloration for iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#4caf50">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
-    <link rel="stylesheet" type="text/css" href={% static "mothulity/style.css" %}>
-    <style media="screen">
-      #mothulityName {
-        font-size: 120px;
-      }
-      #mothulitySlogan {
-        font-size: 30px;
-      }
-      #Logo {
-        width: 300px;
-        height: 300px;
-        margin: 20px;
-      }
-      #headerText {
-        margin: 20px;
-        flex-grow: 10;
-        text-align: center;
-      }
-      .flexSpread {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      .loader {
-        border: 16px solid #f3f3f3; /* Light grey */
-        border-top: 16px solid #4caf50; /* W3 green */
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        animation: spin 2s linear infinite;
-        margin: auto;
-      }
-      .formField {
-        display: inline-block;
-      }
-      .introSlides img {
-        margin: auto;
-        width: 100%;
-        max-width: 480px;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    input[type=file]:invalid ~ button[type=submit] {
-      display: none;
-    }
-    input[type=file]:valid ~ button[type=submit] {
-      display: block;
-    }
-    @media screen and (max-width: 565px) {
-      #Logo {
-        width: 200px;
-        height: 200px;
-      }
-      #mothulityName {
-        font-size: 64px;
-      }
-      #mothulitySlogan {
-        font-size: 15px;
-      }
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href={% static "mothulity/w3-style.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "mothulity/custom-style.css" %}>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body class="w3-container w3-light-grey">
     <header class="flexSpread w3-margin w3-round-xlarge w3-card-8 w3-white">
       <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
-      <div id="headerText">
+      <div class="flexRightCenterText">
         <h1 id="mothulityName">mothulity</h1>
         <p id="mothulitySlogan">run mothur with a single button!</p>
       </div>
@@ -96,16 +34,10 @@
       </div>
     </nav>
     {% block content %}{% endblock %}
-    {% block footer %}Some copyright{% endblock %}
-    <script>
-      function mobileNavigationOpen(elID) {
-          document.getElementById(elID).style.width = "100%";
-          document.getElementById(elID).style.display = "block";
-      }
-      function mobileNavigationClose(elID) {
-          document.getElementById(elID).style.display = "none";
-      }
-      </script>
+    <article class="flexSpread w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
+      <img class="w3-image" src={% static "mothulity/logo-ibb.png" %} alt="IBB PAS">
+      <p class="flexRightCenterText w3-small">This site was created in the Department of Bioinformatics at the Institute of Biochemistry and Biophysics, Polish Academy of Sciences</p>
+    </article>
     <script type="text/javascript">
       function showDiv(elId) {
         document.getElementById(elId).style.display = 'block';
