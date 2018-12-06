@@ -8,7 +8,7 @@
     <h2>Files upload</h2>
     <p class="w3-small">Select all at once, holding the shift button.</p>
     <p class="w3-small">The maximum upload size is 1 Gigabyte in total - above that limit the server will not accept the job.</p>
-    <p class="w3-small">The accepted input files are paired fastq</p>
+    <p class="w3-small">The accepted input files are paired fastq.</p>
     <section>
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
