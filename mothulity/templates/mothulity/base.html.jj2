@@ -17,7 +17,7 @@
   <body class="w3-container w3-light-grey">
     <header class="flexSpread w3-margin w3-round-xlarge w3-card-8 w3-white">
       <img id="Logo" src="{% static "mothulity/logo.png" %}" alt="mothulity">
-      <div id="headerText">
+      <div class="flexRightCenterText">
         <h1 id="mothulityName">mothulity</h1>
         <p id="mothulitySlogan">run mothur with a single button!</p>
       </div>
@@ -34,7 +34,10 @@
       </div>
     </nav>
     {% block content %}{% endblock %}
-    {% block footer %}Some copyright{% endblock %}
+    <article class="flexSpread w3-container w3-margin w3-round-xlarge w3-card-8 w3-white">
+      <img class="w3-image" src={% static "mothulity/logo-ibb.png" %} alt="IBB PAS">
+      <p class="flexRightCenterText w3-small">This site was created in the Department of Bioinformatics at the Institute of Biochemistry and Biophysics, Polish Academy of Sciences</p>
+    </article>
     <script type="text/javascript">
       function showDiv(elId) {
         document.getElementById(elId).style.display = 'block';
