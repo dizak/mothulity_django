@@ -1,0 +1,11 @@
+{% extends "mothulity/base.html.jj2" %}
+{% load static %}
+{% block title %}
+  404
+{% endblock %}
+{% block content %}
+  <article class="w3-container w3-margin w3-round-xlarge w3-card-8 w3-red">
+    <h1>Oh no! This site does not exist!</h1>
+    <p>or does it...</p>
+  </article>
+{% endblock %}
