@@ -417,12 +417,16 @@ def remove_except(directory,
         Directory path from which the unwanted files will be removed.
     pattern: str
         Files ending with this will NOT be removed from the directory.
+        If <None> or <False> - everything will be removed.
     """
     cmd = {True: 'ls', False: 'rm'}
     if not directory.endswith('/'):
         directory = directory + '/'
     files = glob('{}*'.format(directory))
-    files_to_remove = [i for i in files if not fnmatch(i, pattern)]
+    if not pattern:
+        files_to_remove = files
+    else:
+        files_to_remove = [i for i in files if not fnmatch(i, pattern)]
     try:
         return sp.check_output(
             '{} {}'.format(cmd[safety], ' '.join(files_to_remove)),

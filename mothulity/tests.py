@@ -207,6 +207,17 @@ class UtilsTests(TestCase):
             self.ref_files_to_spare
             )
 
+    def test_remove_except_no_exceptions(self):
+        """
+        Tests if everything is removed if there is nothing spare on purpose.
+        """
+        utils.remove_except(self.test_job_dir, None, safety=False)
+        self.test_job_dir_content = os.listdir(self.test_job_dir)
+        self.assertEqual(
+            self.test_job_dir_content,
+            [],
+            )
+
     def test_isdone(self):
         """
         Tests if returns proper value.
