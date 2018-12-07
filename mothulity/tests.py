@@ -7,6 +7,7 @@ from django.conf import settings
 from django.utils import timezone
 import socket
 import pytz
+from time import sleep
 from io import BytesIO
 import os
 import uuid
@@ -224,6 +225,20 @@ class UtilsTests(TestCase):
         """
         self.assertTrue(utils.isdone(self.test_job_dir))
         self.assertFalse(utils.isdone(self.test_job_dir, '*foobar'))
+
+    def test_isstale(self):
+        """
+        Tests if utils.isstale return proper value.
+        """
+        sleep(5)
+        self.assertEqual(
+            utils.isstale('{}1.fastq'.format(self.test_job_dir), 3),
+            True,
+            )
+        self.assertEqual(
+            utils.isstale('{}1.fastq'.format(self.test_job_dir), 1200),
+            False,
+            )
 
 
 class ViewsResponseTests(TestCase):

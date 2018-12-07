@@ -1,10 +1,12 @@
 import subprocess as sp
 from glob import glob
 import subprocess as sp
+import os
 from skbio.io import sniff
 import Bio.SeqIO as sio
 import math
 from fnmatch import fnmatch
+import pytz
 import django
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -544,4 +546,18 @@ def isdone(directory,
             ).decode('utf-8')
         return True
     except Exception as e:
+        return False
+
+
+def isstale(
+    input_file,
+    expiry_time,
+        ):
+    """
+    Check if file is older than given amount of time in seconds.
+    """
+    file_time =  pytz.datetime.datetime.fromtimestamp(os.path.getmtime(input_file))
+    if file_time + pytz.datetime.timedelta(seconds=expiry_time) < pytz.datetime.datetime.now():
+        return True
+    else:
         return False
