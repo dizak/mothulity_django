@@ -561,3 +561,33 @@ def isstale(
         return True
     else:
         return False
+
+
+def get_dirs_without_ids(
+    input_dir,
+    job_model=models.JobID
+    ):
+    """
+    Return list of directories which does not posses the JobID.
+
+    Parameters
+    -------
+    input_dir: path
+        Input path.
+    status_model: django.models.Model, default JobID
+        Django model to use.
+
+    Returns
+    -------
+    list of str
+        List of absolute paths to directories without JobID.
+    """
+    input_dir_abs = os.path.abspath(input_dir)
+    ids = [i.job_id for i in job_model.objects.all()]
+    files_no_job_id = [i for i in os.listdir(input_dir_abs) if i not in ids]
+    dirs_no_job_id = [
+        i
+        for i in ['{}/{}/'.format(input_dir_abs, ii) for ii in files_no_job_id]
+        if os.path.isdir(i)
+        ]
+    return dirs_no_job_id
