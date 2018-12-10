@@ -35,6 +35,7 @@ def job():
         )
     hpc_settings = site.hpcsettings
     path_settings = site.pathsettings
+    web_server_settings = site.webserversettings
     for i in utils.get_pending_ids():
         print("\nJobID {} Status: pending\n".format(i))
         idle_ns = utils.parse_sinfo(utils.ssh_cmd(cmd="sinfo", machine=hpc_settings.hpc_name), "long", "idle")
@@ -79,6 +80,10 @@ def job():
         if utils.isdone(job_sshfs_dir, filename='*zip'):
             utils.remove_except(job_sshfs_dir, '*zip', safety=False)
             utils.change_status(i, 'closed')
+    for i in utils.get_dirs_without_ids(path_settings.upload_path):
+        if utils.isstale(i, web_server_settings.files_upload_expiry_time):
+            print("{} is old and has no JobID. Removing it".format(i))
+            utils.remove_except(i, pattern=None, safety=False)
 
 
 schedule.every(hpc_settings.scheduler_interval).seconds.do(job)
