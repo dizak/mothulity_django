@@ -161,7 +161,15 @@ def status(request,
         form = ResendResultsEMailForm(request.POST)
         if form.is_valid():
             form_data = form.cleaned_data
-            pass#send the email. Do not use try/except as there are custom server error pages. It more informative than just re-rendering the view.
+            print(form_data)
+            utils.ssh_cmd(
+                cmd='''"cd {0} && headnode_notifier.py {1} --subject {2} --attach analysis_{2}.zip"'''.format(
+                    hpc_dir,
+                    form_data['email_address'],
+                    job.submissiondata.job_name,
+                ),
+                machine=hpc_settings.hpc_name,
+            )
     else:
         form = ResendResultsEMailForm()
     return render(request,
