@@ -209,7 +209,7 @@ class OptionsForm(forms.Form):
         return cleaned_data
 
 
-class EMailForm(forms.Form):
+class ResendResultsEMailForm(forms.Form):
     """
     Form for specifying e-mail address for re-sending the results.
     """
