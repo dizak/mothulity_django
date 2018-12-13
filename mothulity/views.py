@@ -151,12 +151,22 @@ def status(request,
         domain=[i for i in settings.ALLOWED_HOSTS if i != 'localhost'][0]
         )
     hpc_settings = site.hpcsettings
+    if request.method == 'POST':
+        form = ResendResultsEMailForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            pass#send the email. Do not use try/except as there are custom server error pages. It more informative than just re-rendering the view.
+    else:
+        form = ResendResultsEMailForm()
     return render(request,
                   "mothulity/status.html.jj2",
-                  {"articles": Article.objects.all(),
-                   "submissiondata": job.submissiondata,
-                   "jobstatus": job.jobstatus,
-                   "max_retry": hpc_settings.retry_maximum_number})
+                  {
+                      "articles": Article.objects.all(),
+                       "submissiondata": job.submissiondata,
+                       "jobstatus": job.jobstatus,
+                       "max_retry": hpc_settings.retry_maximum_number,
+                       'form': form,
+                   })
 
 
 def wiki(request,
