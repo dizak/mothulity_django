@@ -153,6 +153,10 @@ def status(request,
     path_settings = site.pathsettings
     web_server_settings = site.webserversettings
     hpc_settings = site.hpcsettings
+    hpc_dir = "{}{}/".format(
+        path_settings.hpc_path,
+        str(job.job_id).replace("-", "_"),
+    )
     if request.method == 'POST':
         form = ResendResultsEMailForm(request.POST)
         if form.is_valid():
