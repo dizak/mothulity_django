@@ -207,3 +207,14 @@ class OptionsForm(forms.Form):
             msg = "Pass below 100 value"
             self.add_error("classify_seqs_cutoff", msg)
         return cleaned_data
+
+
+class EMailForm(forms.Form):
+    """
+    Form for specifying e-mail address for re-sending the results.
+    """
+    email_address = forms.EmailField(
+        label='e-mail address for re-sending the results:',
+        max_length=40,
+        widget=forms.EmailInput(attrs={'value': '', 'class': input_class})
+    )
