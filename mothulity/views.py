@@ -4,7 +4,7 @@ from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils import timezone
-from mothulity.forms import FileFieldForm, OptionsForm
+from mothulity.forms import FileFieldForm, OptionsForm, ResendResultsEMailForm
 from mothulity.models import *
 from mothulity.utils import isdone
 from . import utils
