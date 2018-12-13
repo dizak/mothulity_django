@@ -23,6 +23,26 @@
     {% elif jobstatus.job_status == "closed" %}
       <article class="w3-container w3-margin w3-card-8 w3-white">
         <p>Your results has been sent to {{ submissiondata.notify_email }}</p>
+        <section>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="fieldWrapper">
+                <div class="formField">
+                  {{ field.label_tag }}
+                </div>
+                <div class="formField">
+                  {{ field }}
+                </div>
+                <div id="error" class="formField">
+                  {{ field.errors}}
+                </div>
+              </div>
+            {% endfor %}
+            <br>
+            <button class="w3-button w3-round w3-black" type="submit">Resend</button>
+          </form>
+        </section>
       </article>
     {% endif %}
   </article>
