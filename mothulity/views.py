@@ -150,6 +150,8 @@ def status(request,
     site = Site.objects.get(
         domain=[i for i in settings.ALLOWED_HOSTS if i != 'localhost'][0]
         )
+    path_settings = site.pathsettings
+    web_server_settings = site.webserversettings
     hpc_settings = site.hpcsettings
     if request.method == 'POST':
         form = ResendResultsEMailForm(request.POST)
