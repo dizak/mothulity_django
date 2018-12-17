@@ -83,7 +83,7 @@ def job():
     for i in utils.get_dirs_without_ids(path_settings.upload_path):
         if utils.isstale(i, web_server_settings.files_upload_expiry_time):
             print("{} is old and has no JobID. Removing it".format(i))
-            utils.remove_except(i, pattern=None, safety=False)
+            utils.remove_dir(i, safety=False)
 
 
 schedule.every(hpc_settings.scheduler_interval).seconds.do(job)
