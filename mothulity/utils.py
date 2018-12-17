@@ -438,6 +438,32 @@ def remove_except(directory,
         return False
 
 
+def remove_dir(
+    directory,
+    safety=True,
+):
+    """
+    Remove or list directory depending on safety switch.
+
+    Parameters
+    -------
+    directory: str
+        Directory path from which the unwanted files will be removed.
+    safety: bool, default True
+        Actual removal takes place only if the safety parameter is set to
+        <False>. Otherwise it is just
+    """
+    cmd = {True: 'ls', False: 'rm'}
+    option = {True: '-d', False: '-r'}
+    try:
+        return sp.check_output(
+            '{} {} {}'.format(cmd[safety], option[safety], directory),
+            shell=True
+        ).decode('utf-8').split()
+    except Exception as e:
+        return False
+
+
 def change_status(job_id,
                   new_status="submitted",
                   status_model=models.JobStatus):

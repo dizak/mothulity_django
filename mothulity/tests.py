@@ -224,6 +224,27 @@ class UtilsTests(TestCase):
             [],
             )
 
+    def test_remove_dir_safety_off(self):
+        """
+        Tests whether directory is properly removed.
+        """
+        os.listdir(self.test_job_dir)
+        self.assertEqual(
+            utils.remove_dir(self.test_job_dir, safety=False),
+            []
+            )
+        with self.assertRaises(FileNotFoundError):
+            os.listdir(self.test_job_dir)
+
+    def test_remove_dir_safety_on(self):
+        """
+        Tests whether directory is properly removed.
+        """
+        self.assertEqual(
+            utils.remove_dir(self.test_job_dir, safety=True),
+            [self.test_job_dir]
+            )
+
     def test_isdone(self):
         """
         Tests if returns proper value.
