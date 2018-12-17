@@ -178,7 +178,7 @@ def status(request,
                       "articles": Article.objects.all(),
                        "submissiondata": job.submissiondata,
                        "jobstatus": job.jobstatus,
-                       "max_retry": hpc_settings.retry_maximum_number,
+                       "max_retry": hpc_settings.retry_maximum_number + 1,
                        'form': form,
                    })
 

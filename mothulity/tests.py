@@ -352,7 +352,8 @@ class ViewsResponseTests(TestCase):
         self.ref_submit_no_data_h2 = 'Parameters to run mothulity'
         self.ref_submit_data_submitted_h1 = '{} has been submitted'.format(submissiondata.job_name.replace('-', '_'))
         self.ref_status_h2 = '{} is {}'.format(submissiondata.job_name, self.test_job_status)
-        self.ref_status_p = 'It means it is waiting for resources allocation on the computing cluster.'
+        self.ref_status_p_pending = 'It means it is waiting for resources allocation on the computing cluster.'
+        self.ref_status_p_dead = 'Sorry, your job was not finished despite being processed {} times'.format(hpc_settings.retry_maximum_number + 1)
 
     def test_index_response_code(self):
         """
@@ -440,13 +441,30 @@ class ViewsResponseTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.ref_submit_data_submitted_h1)
 
-    def test_status_response_code(self):
+    def test_status_pending(self):
         response = self.client.get(
             reverse('mothulity:status', args=(self.test_job_id,))
             )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.ref_status_h2)
-        self.assertContains(response, self.ref_status_p)
+        self.assertContains(response, self.ref_status_p_pending)
+        print(response.content)
+
+    def test_status_dead(self):
+        self.test_job = models.JobID.objects.get(job_id=self.test_job_id)
+        self.test_status = models.JobStatus.objects.get(job_id=self.test_job)
+        self.test_status.job_status = 'dead'
+        self.test_status.save()
+        self.site = site = models.Site.objects.get(
+            domain=[i for i in settings.ALLOWED_HOSTS if i != 'localhost'][0]
+        )
+        self.hpc_settings = self.site.hpcsettings
+        self.response = self.client.get(
+            reverse('mothulity:status', args=(self.test_job_id,))
+            )
+        self.assertEqual(self.response.status_code, 200)
+        self.assertContains(self.response, self.ref_status_p_dead)
+
 
 class ModelsTest(TestCase):
     """
