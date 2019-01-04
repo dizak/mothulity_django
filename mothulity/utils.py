@@ -591,6 +591,7 @@ def isstale(
 
 def get_dirs_without_ids(
     input_dir,
+    dir2id={'_': '-'},
     job_model=models.JobID
     ):
     """
@@ -608,9 +609,10 @@ def get_dirs_without_ids(
     list of str
         List of absolute paths to directories without JobID.
     """
+    dir_char, job_id_char = tuple(dir2id.items())[0]
     input_dir_abs = os.path.abspath(input_dir)
     ids = [i.job_id for i in job_model.objects.all()]
-    files_no_job_id = [i for i in os.listdir(input_dir_abs) if i not in ids]
+    files_no_job_id = [i for i in os.listdir(input_dir_abs) if i.replace(dir_char, job_id_char) not in ids]
     dirs_no_job_id = [
         i
         for i in ['{}/{}/'.format(input_dir_abs, ii) for ii in files_no_job_id]

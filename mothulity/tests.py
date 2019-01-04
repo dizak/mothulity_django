@@ -74,8 +74,8 @@ class UtilsTests(TestCase):
             'job_id_id': self.test_job_id,
             'amplicon_type': '16S',
         }
-        self.test_job_dir = '{}/tests/{}/'.format(base_dir, self.test_job_id)
-        self.test_no_job_dir = '{}/tests/{}/'.format(base_dir, str(uuid.uuid4()))
+        self.test_job_dir = '{}/tests/{}/'.format(base_dir, self.test_job_id.replace('-', '_'))
+        self.test_no_job_dir = '{}/tests/{}/'.format(base_dir, str(uuid.uuid4()).replace('-', '_'))
         os.system('mkdir {}'.format(self.test_job_dir))
         os.system('mkdir {}'.format(self.test_no_job_dir))
         os.system('touch {0}1.fastq {0}2.fastq {0}mothur.job.sh {0}analysis_mothur.job.zip'.format(self.test_job_dir))
