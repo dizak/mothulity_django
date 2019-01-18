@@ -80,7 +80,7 @@ def job():
         if utils.isdone(job_sshfs_dir, filename='*zip'):
             utils.remove_except(job_sshfs_dir, '*zip', safety=False)
             utils.change_status(i, 'closed')
-    for i in utils.get_dirs_without_ids(path_settings.upload_path):
+    for i in utils.get_dirs_without_entries(path_settings.upload_path):
         if utils.isstale(i, web_server_settings.files_upload_expiry_time):
             print("{} is old and has no JobID. Removing it".format(i))
             utils.remove_dir(i, safety=False)

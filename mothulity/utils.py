@@ -589,10 +589,10 @@ def isstale(
         return False
 
 
-def get_dirs_without_ids(
+def get_dirs_without_entries(
     input_dir,
     dir2id={'_': '-'},
-    job_model=models.JobID
+    job_model=models.SubmissionData
     ):
     """
     Return list of directories which does not posses the JobID.
@@ -611,7 +611,7 @@ def get_dirs_without_ids(
     """
     dir_char, job_id_char = tuple(dir2id.items())[0]
     input_dir_abs = os.path.abspath(input_dir)
-    ids = [i.job_id for i in job_model.objects.all()]
+    ids = [i.job_id.job_id for i in job_model.objects.all()]
     files_no_job_id = [i for i in os.listdir(input_dir_abs) if i.replace(dir_char, job_id_char) not in ids]
     dirs_no_job_id = [
         i

@@ -38,8 +38,25 @@ class UtilsTests(TestCase):
             Number of nodes idle in queue long.
         """
         self.test_job_id = str(uuid.uuid4())
+        self.submission_data_dict = {"job_name": "test-job",
+                                     "notify_email": "test@mail.com",
+                                     "max_ambig": 0,
+                                     "max_homop": 8,
+                                     # "min_length": 100,
+                                     # "max_length": 200,
+                                     "min_overlap": 10,
+                                     "screen_criteria": 95,
+                                     "chop_length": 250,
+                                     "precluster_diffs": 2,
+                                     "classify_seqs_cutoff": 80,
+                                     "amplicon_type": "16S"}
         self.j_id = models.JobID(job_id=self.test_job_id)
         self.j_id.save()
+        submissiondata = models.SubmissionData(
+            job_id=self.j_id,
+            **self.submission_data_dict,
+        )
+        submissiondata.save()
         self.fastq_file = "{}/tests/Mock_S280_L001_R1_001.fastq".format(base_dir)
         self.summ_file = "{}/tests/mothur.job.trim.contigs.summary".format(base_dir)
         self.machine = "headnode"
@@ -266,12 +283,12 @@ class UtilsTests(TestCase):
             False,
             )
 
-    def test_get_dirs_without_ids(self):
+    def test_get_dirs_without_entries(self):
         """
-        Test if utils.get_dirs_without_ids returns proper value.
+        Test if utils.get_dirs_without_entries returns proper value.
         """
         self.assertEqual(
-            utils.get_dirs_without_ids('{}/tests/'.format(base_dir), job_model=models.JobID),
+            utils.get_dirs_without_entries('{}/tests/'.format(base_dir), job_model=models.SubmissionData),
             [self.test_no_job_dir]
             )
 
