@@ -1,4 +1,4 @@
-django
+django<=2.1.2
 django-froala-editor
 schedule
 biopython
