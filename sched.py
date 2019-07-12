@@ -40,22 +40,20 @@ def job():
         print("\nJobID {} Status: pending\n".format(i))
         idle_ns = utils.parse_sinfo(utils.ssh_cmd(cmd="sinfo", machine=hpc_settings.hpc_name), "long", "idle")
         idle_phis = utils.parse_sinfo(utils.ssh_cmd(cmd="sinfo", machine=hpc_settings.hpc_name), "accel", "idle")
-        if utils.get_seqs_count(i) > 500000:
-            if idle_phis > hpc_settings.free_PHIs_minimum_number:
-                if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, hpc_path=path_settings.hpc_path) is True:
-                    utils.change_status(i)
-                    print("JobID {} submitted".format(i))
-            else:
-                print("Only {} phi nodes free. {} phi must stay free".format(idle_phis,
-                                                                             hpc_settings.free_PHIs_minimum_number))
-        if utils.get_seqs_count(i) < 500000:
-            if idle_ns > hpc_settings.free_Ns_minimum_number:
-                if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, hpc_path=path_settings.hpc_path) is True:
-                    utils.change_status(i)
-                    print("JobID {} submitted".format(i))
-            else:
-                print("Only {} n nodes free. {} n nodes must stay free".format(idle_ns,
-                                                                               hpc_settings.free_Ns_minimum_number))
+        if idle_phis > hpc_settings.free_PHIs_minimum_number:
+            if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, hpc_path=path_settings.hpc_path) is True:
+                utils.change_status(i)
+                print("JobID {} submitted".format(i))
+        else:
+            print("Only {} phi nodes free. {} phi must stay free".format(idle_phis,
+                                                                         hpc_settings.free_PHIs_minimum_number))
+        if idle_ns > hpc_settings.free_Ns_minimum_number:
+            if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, hpc_path=path_settings.hpc_path) is True:
+                utils.change_status(i)
+                print("JobID {} submitted".format(i))
+        else:
+            print("Only {} n nodes free. {} n nodes must stay free".format(idle_ns,
+                                                                           hpc_settings.free_Ns_minimum_number))
     for i in utils.get_ids_with_status("submitted"):
         print("\nJobID {} Status: submitted. Retries: {}\n".format(i,
                                                                    utils.get_retry(i)))

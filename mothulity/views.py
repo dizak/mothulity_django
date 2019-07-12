@@ -17,8 +17,7 @@ upload_errors = {
     'format': 'Sorry, it seems you uploaded something else than FASTQ file...'
 }
 
-def index(request,
-          seqs_limit=900000):
+def index(request):
     """
     Evaluates file upload form, uploaded files, total number of reads, creates
     Job ID and renders appropriate template.
@@ -26,8 +25,6 @@ def index(request,
     Parameters
     -------
     request: HTTP.request
-    seqs_limit: int, default <900000>
-        Number of maximum reads per job allowed.
 
     Return
     ------
