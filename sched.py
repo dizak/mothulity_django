@@ -40,6 +40,10 @@ def job():
         print("\nJobID {} Status: pending\n".format(i))
         idle_ns = utils.parse_sinfo(utils.ssh_cmd(cmd="sinfo", machine=hpc_settings.hpc_name), "long", "idle")
         idle_phis = utils.parse_sinfo(utils.ssh_cmd(cmd="sinfo", machine=hpc_settings.hpc_name), "accel", "idle")
+        print("Number of free ns - {}. Number of free phis  - {}".format(
+            idle_ns,
+            idle_phis,
+        ))
         if idle_phis > hpc_settings.free_PHIs_minimum_number:
             if utils.queue_submit(job_id=i, machine=hpc_settings.hpc_name, hpc_path=path_settings.hpc_path) is True:
                 utils.change_status(i)
