@@ -222,7 +222,7 @@ def count_seqs(input_files,
     return sum([len(list(i)) for i in seqs])
 
 
-def render_moth_cmd(moth_exec="mothulity",
+def render_moth_cmd(moth_exec="srun mothulity",
                     moth_files=None,
                     moth_opts=None,
                     shell="sbatch",
