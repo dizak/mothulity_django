@@ -74,7 +74,7 @@ def index(request):
                                    "form": form,
                                    "upload_error": upload_errors['format']})
             try:
-                utils.ssh_cmd(cmd='mothulity_fc {}'.format(hpc_dir), machine=hpc_settings.hpc_name)
+                utils.ssh_cmd(cmd='srun mothulity_fc {}'.format(hpc_dir), machine=hpc_settings.hpc_name)
             except:
                 form = FileFieldForm()
                 return render(request,
