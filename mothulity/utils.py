@@ -394,6 +394,7 @@ def queue_submit(job_id,
         cmd=moth_cmd,
         machine=machine,
         )
+    print(sbatch_out)
     if sbatch_success in sbatch_out:
         add_slurm_id(job_id=job_id,
                      slurm_id=int(sbatch_out.split(" ")[-1]))
