@@ -386,10 +386,15 @@ def queue_submit(job_id,
     sub_data = model_to_dict(job.submissiondata)
     job_id_dir = '{}{}/'.format(hpc_path, str(job_id).replace('-', '_'))
     sub_data["use-slurm-setting"] = "phi"
-    moth_cmd = render_moth_cmd(moth_files=job_id_dir,
-                                     moth_opts=sub_data,
-                                     pop_elems=["job_id",
-                                                "amplicon_type"])
+    moth_cmd = render_moth_cmd(
+        moth_exec="srun mothulity",
+        moth_files=job_id_dir,
+        moth_opts=sub_data,
+        pop_elems=[
+            "job_id",
+            "amplicon_type"
+        ],
+    )
     sbatch_out = ssh_cmd(
         cmd=moth_cmd,
         machine=machine,
