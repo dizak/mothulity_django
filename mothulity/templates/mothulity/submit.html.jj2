@@ -8,7 +8,7 @@
   </article>
   <article class="w3-container w3-round-xlarge w3-margin w3-card-8 w3-white">
     <p>The results will be sent to {{ notify_email}} when the job is done. Please be patient, it can take up to 2 weeks.</p>
-    <p>You will be able to view the status of {{ submissiondata.job_name }} here: <a href="{{ request.META.HTTP_HOST }}{% url "mothulity:status" job_id %}"></a></p>
+    <p>You will be able to view the status of {{ submissiondata.job_name }} <a href="{{ request.META.HTTP_HOST }}{% url "mothulity:status" job_id %}">here</a></p>
     <p>Copy it and save.</p>
   </article>
 {% endblock %}
